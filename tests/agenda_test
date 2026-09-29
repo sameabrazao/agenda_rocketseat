@@ -1,0 +1,46 @@
+import unittest
+from unittest.mock import patch
+from agenda.agenda import adicionar, atualizar
+import json
+
+
+class MyTestCase(unittest.TestCase):
+
+    #no side effect estão os valores que serão passados no input da função de adicionar
+    @patch('builtins.input', side_effect=[
+        "Sâmea",
+        "111111",
+        "email@gmail.com"])
+
+    def test_adicionar(self, mock_input):
+        data = adicionar()
+        self.assertEqual(data['nome'], 'Sâmea')
+        self.assertEqual(data['telefone'], '111111')
+        self.assertEqual(data['email'], 'email@gmail.com')
+
+    @patch('agenda.agenda.salvar')
+    @patch('agenda.agenda.listar')
+    # no side effect estão os valores que serão passados no input da função de atualizar
+    @patch('builtins.input', side_effect=[
+        '1',
+        'Silva',
+        '999999',
+        'silva@email.com'
+    ])
+    def test_atualizar(self, mock_input, mock_listar, mock_salvar):
+        #mockando o valor da função listar
+        mock_listar.return_value = [
+            {
+                "nome": "Mario",
+                "telefone": "123450",
+                "email": "email"
+            }
+        ]
+        atualizar()
+        contatos_atualizados = mock_salvar.call_args[0][0]
+        self.assertEqual(contatos_atualizados[0]["nome"], "Silva")
+        self.assertEqual(contatos_atualizados[0]["telefone"], "999999")
+        self.assertEqual(contatos_atualizados[0]["email"], "silva@email.com")
+
+if __name__ == '__main__':
+    unittest.main()
