@@ -7,17 +7,28 @@ def menu():
               "2- Adicionar contato\n"
               "3- Atualizar contato\n"
               "4- Excluir contato\n"
+              "5- Favoritar contato\n"
+              "6- Ver favoritos\n"
               "0- Sair")
-        opcao = int(input("Digite a opção desejada: "))
+
+        try:
+            opcao = int(input("Digite a opção desejada: "))
+        except (ValueError, TypeError):
+            print("\nDigite uma opção válida!\n")
+            continue
 
         if opcao == 1:
-            listar()
+            listar(1)
         elif opcao == 2:
             adicionar()
         elif opcao == 3:
             atualizar()
         elif opcao == 4:
             excluir()
+        elif opcao == 5:
+            favoritar()
+        elif opcao == 6:
+            ver_favoritos()
         elif opcao == 0:
             print("Saindo...")
             break
