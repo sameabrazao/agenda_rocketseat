@@ -12,13 +12,14 @@ Criar uma agenda de contatos em Python com persistência de dados utilizando arq
 - Listar contatos
 - Atualizar contatos
 - Excluir contatos
-
-## ⭐ Funcionalidades previstas
-
-As seguintes funcionalidades fazem parte dos requisitos do desafio, mas ainda estão em desenvolvimento:
-
 - Marcar contatos como favoritos
 - Listar apenas os contatos favoritos
+
+## 🧪 Testes unitários
+Foi implementado dois testes unitários, uma para a função adicionar e outro para a função atualizar.
+
+## ⭐ Implementações previstas
+- Teste unitários para as demais funções.
 
 ## 🛠️ Tecnologias utilizadas
 
